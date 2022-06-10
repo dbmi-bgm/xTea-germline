@@ -27,18 +27,19 @@ baseCommand:
   - "."
 
 inputs:
-  - id: sample
-    type: string
-    inputBinding:
-      prefix: -i
-    doc: sample name
-
   - id: input_bam
     type: File
     inputBinding:
       prefix: -b
     secondaryFiles:
       - .bai
+
+  - id: analysis_type
+    type: int
+    inputBinding:
+      prefix: -y
+    doc: analysis type |
+         1 for LINE1, 2 for ALU, 4 for SVA
 
   - id: genome_tar
     type: File
@@ -58,6 +59,13 @@ inputs:
     type: File
     doc: gencode.annotation.gff3
 
+  - id: sample
+    type: string
+    default: SAMPLE
+    inputBinding:
+      prefix: -i
+    doc: sample name
+
   - id: nthreads
     type: int
     default: 16
@@ -69,13 +77,6 @@ inputs:
     default: 5907
     inputBinding:
       prefix: -f
-
-  - id: analysis_type
-    type: int
-    inputBinding:
-      prefix: -y
-    doc: analysis type |
-         1 for LINE1, 2 for ALU, 4 for SVA
 
 outputs:
   - id: output
