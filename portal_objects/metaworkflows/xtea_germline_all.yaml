@@ -1,0 +1,187 @@
+## Pipeline information #####################################
+#     General information for the pipeline
+#############################################################
+name: xtea_germline_all
+description: Run xTea algorithm to detect Transposable Elements insertion from germline data. |
+             Call ALL classes of TE (LINE1, ALU, SVA).
+
+## General arguments ########################################
+#     Pipeline input, reference files, and general arguments
+#       define all arguments for the pipeline here
+#############################################################
+input:
+
+  # File argument
+  input_bams:
+    argument_type: file.bam
+    dimensionality: 1
+
+  genome_tar:
+    argument_type: file.tar_gz
+    files:
+      - complete-genome-library-archive@hg38
+
+  repeats_tar:
+    argument_type: file.tar_gz
+    files:
+      - xtea-repeat-library-archive@v06152022
+
+  gencode:
+    argument_type: file.gff3
+    files:
+      - gencode-gene-annotation@v06152022
+
+## Workflows and dependencies ###############################
+#     Information for the workflows and their dependencies
+#############################################################
+workflows:
+
+  ## Workflow definition #####################
+  #   xtea_germline@LINE1
+  ############################################
+  xtea_germline@LINE1:
+
+    ## Specific arguments ##############
+    ####################################
+    input:
+
+      # File argument
+      input_bam:
+        argument_type: file.bam
+        source_argument_name: input_bams
+        scatter: 1
+
+      genome_tar:
+        argument_type: file.tar_gz
+
+      repeats_tar:
+        argument_type: file.tar_gz
+
+      gencode:
+        argument_type: file.gff3
+
+      # Parameter argument
+      analysis_type:
+        argument_type: parameter.integer
+        value: 1
+
+    ## Output ##########################
+    #     Output files for the workflow
+    ####################################
+    output:
+
+      # File output
+      insertions_tar:
+        file_type: LINE1 insertions
+        description: archive of insertion calls from xTea, LINE1
+        variant_type: LINE1
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+        instance_type: m5.4xlarge
+        ebs_size: 1.1x
+        EBS_optimized: True
+        spot_instance: True
+        run_name: run_xtea_germline-LINE1
+        behavior_on_capacity_limit: wait_and_retry
+
+  ## Workflow definition #####################
+  #   xtea_germline@ALU
+  ############################################
+  xtea_germline@ALU:
+
+    ## Specific arguments ##############
+    ####################################
+    input:
+
+      # File argument
+      input_bam:
+        argument_type: file.bam
+        source_argument_name: input_bams
+        scatter: 1
+
+      genome_tar:
+        argument_type: file.tar_gz
+
+      repeats_tar:
+        argument_type: file.tar_gz
+
+      gencode:
+        argument_type: file.gff3
+
+      # Parameter argument
+      analysis_type:
+        argument_type: parameter.integer
+        value: 2
+
+    ## Output ##########################
+    #     Output files for the workflow
+    ####################################
+    output:
+
+      # File output
+      insertions_tar:
+        file_type: ALU insertions
+        description: archive of insertion calls from xTea, ALU
+        variant_type: ALU
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+        instance_type: m5.4xlarge
+        ebs_size: 1.1x
+        EBS_optimized: True
+        spot_instance: True
+        run_name: run_xtea_germline-ALU
+        behavior_on_capacity_limit: wait_and_retry
+
+  ## Workflow definition #####################
+  #   xtea_germline@SVA
+  ############################################
+  xtea_germline@SVA:
+
+    ## Specific arguments ##############
+    ####################################
+    input:
+
+      # File argument
+      input_bam:
+        argument_type: file.bam
+        source_argument_name: input_bams
+        scatter: 1
+
+      genome_tar:
+        argument_type: file.tar_gz
+
+      repeats_tar:
+        argument_type: file.tar_gz
+
+      gencode:
+        argument_type: file.gff3
+
+      # Parameter argument
+      analysis_type:
+        argument_type: parameter.integer
+        value: 4
+
+    ## Output ##########################
+    #     Output files for the workflow
+    ####################################
+    output:
+
+      # File output
+      insertions_tar:
+        file_type: SVA insertions
+        description: archive of insertion calls from xTea, SVA
+        variant_type: SVA
+
+    ## EC2 Configuration to use ########
+    ####################################
+    config:
+        instance_type: m5.4xlarge
+        ebs_size: 1.1x
+        EBS_optimized: True
+        spot_instance: True
+        run_name: run_xtea_germline-SVA
+        behavior_on_capacity_limit: wait_and_retry

@@ -79,10 +79,10 @@ inputs:
       prefix: -f
 
 outputs:
-  - id: output
+  - id: insertions_tar
     type: File
     outputBinding:
       glob: $(inputs.sample + "_*" + ".tar.gz")
 
 doc: |
-  run xTea
+  run xTea for germline data

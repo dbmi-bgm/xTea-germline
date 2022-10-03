@@ -1,0 +1,39 @@
+################################################################
+# xTea repeat library archive
+################################################################
+name: xtea-repeat-library-archive
+description: Pre-processed repeat library archive used by xTea. |
+             Build hg38/GRCh38.
+format: tar_gz
+version: v06152022
+# Required to enable sync with a reference bucket
+uuid: f0232bde-e969-463f-b1c5-0d22aa44e128
+accession: GAPMKFA982LA
+
+---
+
+################################################################
+# GENCODE gene annotation file
+################################################################
+name: gencode-gene-annotation
+description: Gene annotation file from GENCODE. |
+             Build hg38/GRCh38.
+format: gff3
+version: v06152022
+# Required to enable sync with a reference bucket
+uuid: dee547ad-8af6-4b36-a814-9550380b0f8f
+accession: GAPJ7F9A8NH2
+
+---
+
+################################################################
+# Complete genome library archive, FASTA and BWT index
+################################################################
+name: complete-genome-library-archive
+description: Complete genome library archive (include FASTA and BWT index). |
+             Build hg38/GRCh38.
+format: tar_gz
+version: hg38
+# Required to enable sync with a reference bucket
+uuid: 0557b479-8d35-40c9-9a93-8c84ed1dd72f
+accession: GAPO7L9A8X1S

@@ -1,0 +1,48 @@
+## Workflow information #####################################
+#     General information for the workflow
+#############################################################
+name: xtea_germline
+description: Run xTea algorithm to detect Transposable Elements insertion. |
+             Implementation to run on germline data.
+
+runner:
+  language: cwl
+  main: xtea_germline.cwl
+
+software:
+  - xTea@v0.1.9
+
+## Input information ########################################
+#     Input files and parameters
+#############################################################
+input:
+
+  # File argument
+  input_bam:
+    argument_type: file.bam
+
+  genome_tar:
+    argument_type: file.tar_gz
+
+  repeats_tar:
+    argument_type: file.tar_gz
+
+  gencode:
+    argument_type: file.gff3
+
+  # Parameter argument
+  analysis_type:
+    # 1 for LINE1, 2 for ALU, 4 for SVA
+    argument_type: parameter.integer
+
+  nthreads:
+    argument_type: parameter.integer
+
+## Output information #######################################
+#     Output files and quality controls
+#############################################################
+output:
+
+  # File output
+  insertions_tar:
+    argument_type: file.tar_gz
