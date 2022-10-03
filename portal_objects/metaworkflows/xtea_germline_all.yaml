@@ -63,7 +63,7 @@ workflows:
       # Parameter argument
       analysis_type:
         argument_type: parameter.integer
-        value: 1
+        value: "1"
 
     ## Output ##########################
     #     Output files for the workflow
@@ -112,7 +112,7 @@ workflows:
       # Parameter argument
       analysis_type:
         argument_type: parameter.integer
-        value: 2
+        value: "2"
 
     ## Output ##########################
     #     Output files for the workflow
@@ -161,7 +161,7 @@ workflows:
       # Parameter argument
       analysis_type:
         argument_type: parameter.integer
-        value: 4
+        value: "4"
 
     ## Output ##########################
     #     Output files for the workflow
