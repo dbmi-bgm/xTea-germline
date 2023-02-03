@@ -33,8 +33,6 @@ WORKDIR /usr/local/bin
 ## conda and pysam
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py38_4.10.3-Linux-x86_64.sh && bash Miniconda3-py38_4.10.3-Linux-x86_64.sh -p /miniconda -b
 ENV PATH=/miniconda/bin:$PATH
-RUN conda update -y conda \
-    && rm Miniconda3-py38_4.10.3-Linux-x86_64.sh
 RUN conda config --add channels r \
     && conda config --add channels bioconda \
     && conda install -c conda-forge libgcc-ng \
